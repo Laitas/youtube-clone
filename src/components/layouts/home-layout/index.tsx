@@ -12,7 +12,7 @@ export const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="pt-16">
         <Sidebar />
       </div>
-      {children}
+      <main className="pt-16">{children}</main>
     </SidebarProvider>
   );
 };

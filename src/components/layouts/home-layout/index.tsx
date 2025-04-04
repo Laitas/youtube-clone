@@ -8,11 +8,13 @@ import { Sidebar } from "./sidebar";
 export const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SidebarProvider>
-      <Navbar />
-      <div className="pt-16">
-        <Sidebar />
+      <div className="w-full">
+        <Navbar />
+        <div className="flex min-h-screen pt-16">
+          <Sidebar />
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </div>
       </div>
-      <main className="pt-16">{children}</main>
     </SidebarProvider>
   );
 };

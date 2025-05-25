@@ -12,21 +12,17 @@ import {
 } from "./ui/carousel";
 import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
+import Link from "next/link";
 
 type FilterCarouselProps = {
   value?: string;
-  onSelect: (value: string) => void;
   data: Array<{
     value: string;
     label: string;
   }>;
 };
 
-export const FilterCarousel = ({
-  value,
-  onSelect,
-  data,
-}: FilterCarouselProps) => {
+export const FilterCarousel = ({ value, data }: FilterCarouselProps) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -60,36 +56,33 @@ export const FilterCarousel = ({
         setApi={setApi}
       >
         <CarouselContent className="-ml-3">
-          <CarouselItem
-            className="basis-auto pl-3"
-            onClick={() => onSelect("")}
-          >
-            <Badge
-              variant={
-                value === "" || value === undefined ? "default" : "secondary"
-              }
-              className="rounded-lg px-3 py-1 text-sm whitespace-nowrap"
-              asChild
-            >
-              <button type="button">All</button>
-            </Badge>
+          <CarouselItem className="basis-auto pl-3">
+            <Link href={{ pathname: "/", query: { categoryId: null } }}>
+              <Badge
+                variant={
+                  value === "" || value === undefined ? "default" : "secondary"
+                }
+                className="rounded-lg px-3 py-1 text-sm whitespace-nowrap"
+                asChild
+              >
+                <button type="button">All</button>
+              </Badge>
+            </Link>
           </CarouselItem>
 
           {data.map((item) => (
             <CarouselItem className="basis-auto pl-3" key={item.value}>
-              <Badge
-                variant={value === item.value ? "default" : "secondary"}
-                className="rounded-lg px-3 py-1 text-sm whitespace-nowrap"
-                asChild
-              >
-                <button
-                  type="button"
-                  onClick={() => onSelect(item.value)}
-                  className="flex items-center gap-2"
+              <Link href={{ pathname: "/", query: { categoryId: item.value } }}>
+                <Badge
+                  variant={value === item.value ? "default" : "secondary"}
+                  className="rounded-lg px-3 py-1 text-sm whitespace-nowrap"
+                  asChild
                 >
-                  {item.label}
-                </button>
-              </Badge>
+                  <button type="button" className="flex items-center gap-2">
+                    {item.label}
+                  </button>
+                </Badge>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -1,9 +1,9 @@
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SearchIcon } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 import { AuthButton } from "../../buttons/auth-button";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Sidebar } from "./sidebar";
+import Title from "./title";
 
 export const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -25,10 +25,7 @@ const Navbar = () => {
       <div className="flex w-full items-center gap-4">
         <section className="flex shrink-0 items-center">
           <SidebarTrigger />
-          <Link href="/" className="flex items-center text-xl">
-            <Youtube />
-            <span className="font-semibold tracking-tight">NewTube</span>
-          </Link>
+          <Title />
         </section>
         <section className="mx-auto flex max-w-3xl flex-1 justify-center">
           <SearchInput />
@@ -57,25 +54,5 @@ const SearchInput = () => {
         <SearchIcon className="size-5" />
       </button>
     </form>
-  );
-};
-
-const Youtube = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="red"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-10"
-    >
-      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-      <path d="m10 15 5-3-5-3z" fill="white" />
-    </svg>
   );
 };
